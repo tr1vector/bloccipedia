@@ -34,6 +34,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'thor', '0.20.0'
+# Use Devise for User Authentication
+gem 'devise'
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
