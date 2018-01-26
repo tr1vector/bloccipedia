@@ -16,15 +16,24 @@
   			<li><%= link_to "About", welcome_about_path %></li>
   			<li><%= link_to "FAQ", welcome_faq_path %></li>
         <% if user_signed_in? %>
-          Signed in as: <strong><%= current_user.email %></strong>
+          
           <li class="pull-right"><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => 'navbar-link pull-right' %></li> 
           <li class="pull-right"><%= link_to 'Edit Profile', edit_user_registration_path, :class => 'navbar-link pull-right' %></li>
+          <p class="pull-right">Signed in as: <br /><strong><%= current_user.email %></strong></p>
         <% else %>
           <li class="pull-right"><%= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link pull-right' %></li> - 
           <li class="pull-right"><%= link_to "Sign In", new_user_session_path, :class => 'navbar-link pull-right' %></li>
         <% end %>
       </ul>
-
+      <% if flash[:notice] %>
+        <div class="alert alert-success" role="alert">
+          <%= flash[:notice] %>
+        </div>
+      <% elsif flash[:alert] %>
+        <div class="alert alert-warning" role="alert">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
 
   		<%= yield %>
   	</div>

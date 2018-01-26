@@ -92,5 +92,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   #URL for mailer/Devise
-  config.action_mailer.default_url_options = { host: 'frozen-plains-97003.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'damp-depths-13479.herokuapp.com' }
 end

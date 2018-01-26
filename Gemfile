@@ -36,6 +36,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'thor', '0.20.0'
 # Use Devise for User Authentication
 gem 'devise'
+# Handle Sensitive Config Data
+gem 'figaro', '1.0'
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
