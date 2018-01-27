@@ -1,12 +1,12 @@
 <h1>Blocipedia: Social, Markdown Wikis</h1>
 
 <div class="jumbotron">
-	<h2>Create and share Markdown Wikis</h2>
+	<h2 id="jumbo-head">Create and share Markdown Wikis</h2>
 	<br />
 	<% if user_signed_in? %>
 		<p class="text-center"><%= link_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-danger' %></p>
 	<% else %>
-		<p class="text-center"><%= link_to "Sign up", new_user_registration_path, class: 'btn btn-primary' %></p>
+		<p class="text-center"><%= link_to "Sign up", new_user_registration_path, class: 'btn btn-default' %></p>
 	<% end %>
 </div>
 <div class="row">

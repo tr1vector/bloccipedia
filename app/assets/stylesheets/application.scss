@@ -21,3 +21,16 @@
 body {
 	text-align: center;
 }
+
+.jumbotron {
+	background-image: url('blocks.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+
+#jumbo-head {
+	color: white;
+	text-shadow: 2px 2px 15px black;
+}
