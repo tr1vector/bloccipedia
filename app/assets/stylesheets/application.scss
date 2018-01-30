@@ -18,9 +18,9 @@
 @import "bootstrap";
 @import "font-awesome";
 
-body {
-	text-align: center;
-}
+// body {
+// 	text-align: center;
+// }
 
 .jumbotron {
 	background-image: url('blocks.jpg');
@@ -30,7 +30,12 @@ body {
 	background-size: cover;
 }
 
+.head-center {
+	text-align: center;
+}
+
 #jumbo-head {
 	color: white;
 	text-shadow: 2px 2px 15px black;
+	text-align: center;
 }
