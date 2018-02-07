@@ -40,6 +40,8 @@ gem 'devise'
 gem 'figaro', '1.0'
 # Create fake data to seed the database with using Faker
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+# Use Stripe for payment services
+gem 'stripe'
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'

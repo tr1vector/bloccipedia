@@ -1,2 +1,5 @@
 SENDGRID_PASSWORD:
 SENDGRID_USERNAME:
+
+Stripe.api_key:
+Stripe.publishable_key:
