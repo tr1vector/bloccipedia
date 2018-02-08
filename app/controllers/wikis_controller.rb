@@ -2,11 +2,19 @@ class WikisController < ApplicationController
   before_action :authorize_user, except: [:index, :show, :new, :create, :edit, :update]
 
   def index
-  	@wikis = Wiki.all
+  	@wikis = Wiki.visible_to(current_user)
   end
 
   def show
   	@wiki = Wiki.find(params[:id])
+    unless (@wiki.private == false || @wiki.private == nil) || current_user.premium? || current_user.admin?
+      flash[:alert] = "You must be a premium user to view private topics."
+      if current_user
+        redirect_to new_charge_path
+      else
+        redirect_to new_user_registration_path
+      end
+    end
   end
 
   def new

@@ -48,16 +48,17 @@
   
     <h2>Account Info</h2>
     <p>Your Membership status:
-    <strong>
-      <% if current_user.member? %>
-        Only a Member
-      <% elsif current_user.premium? %>
-        Premium Member...nice!
-      <% elsif current_user.admin? %>
-        Admin Member
-      <% end %>
-      </p>
-    </strong>
+      <strong>
+        <% if current_user.member? %>
+          Only a Member
+        <% elsif current_user.premium? %>
+          Premium Member...nice!
+        <% elsif current_user.admin? %>
+          Admin Member
+        <% end %>
+      </strong>
+    </p>
+
     <hr>
 
     <% if current_user.member? %>

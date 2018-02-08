@@ -25,8 +25,18 @@ users = User.all
 		user: users.sample
 	)
 end
+
+#Create some private wikis
+# 5.times do
+# 	Wiki.create!(
+# 		title: Faker::BackToTheFuture.character,
+# 		body: Faker::BackToTheFuture.quote,
+# 		private: true,
+# 		user: users.sample
+# 	)
+# end
 wikis = Wiki.all
 
 puts "Seed finished"
 puts "#{User.count} users created"
-puts "#{Wiki.count}  wikis created"
+puts "#{Wiki.count} wikis created"

@@ -44,6 +44,7 @@ class ChargesController < ApplicationController
 
 	def destroy
 		current_user.update_attribute(:role, "member")
+		current_user.wikis.each { |wiki| wiki.update_attribute(:private, false) }
 		flash[:notice] = "You have cancelled you premium membership and can only enjoy the benefits of a member user."
 		redirect_to edit_user_registration_path(current_user)
 	end
