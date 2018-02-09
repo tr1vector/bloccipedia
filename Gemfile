@@ -42,6 +42,8 @@ gem 'figaro', '1.0'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 # Use Stripe for payment services
 gem 'stripe'
+#Use Redcarpet for markdown syntax
+gem 'redcarpet'
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'

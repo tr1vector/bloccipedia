@@ -1,13 +1,22 @@
-<h1>Edit Wiki</h1>
-
+<h1 class="text-center">Edit Wiki</h1>
+<hr>
 <div class="row">
 	<div class="col-md-4">
-		<p>Guidelines for Wikis</p>
-			<ul>
-				<li>Make sure the info is factual.</li>
-				<li>Feel free to update as deemed necessary.</li>
-				<li>Have fun!</li>
-			</ul>
+		<h3 class="text-center">Make your text cool with Markdown!</h3>
+		<hr>
+		<h4>Guide:</h4>
+		<small>
+<!-- 			<h1># Large Header</h1>
+			<h2>## Medium Header</h2>
+			<h3>### Small Header</h3> -->
+			<p><strong>**bold**</strong></p>
+			<p>_underline_</p>
+			<p><i>*italic*</i></p>
+			<p>`code`</p>
+			<p>--- horizontal rule</p>
+			<p><mark>==highlight==</mark></p>
+			<p>links[I'm an inline-style link](https://www.google.com)</p>
+		</small>
 	</div>
 	<div class="col-md-8">
 		<%= form_for @wiki do |f| %>

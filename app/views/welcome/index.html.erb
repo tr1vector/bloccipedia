@@ -8,12 +8,15 @@
 	<% else %>
 		<p class="text-center"><%= link_to "Sign up", new_user_registration_path, class: 'btn btn-default' %></p>
 	<% end %>
-	<% if current_user.member? %>
-		<p class="text-center"><%= link_to "Upgrade to a Premium Membership", new_charge_path, class: 'btn btn-default' %></p>
+	<% if current_user %>
+		<% if current_user.member? %>
+			<p class="text-center"><%= link_to "Upgrade to a Premium Membership", new_charge_path, class: 'btn btn-default' %></p>
+		<% end %>
+		<% if current_user.premium? %>
+			<p class="text-center"><%= link_to "Cancel my Premium Membership", charge_path(current_user), method: :delete, class: 'btn btn-default', data: { confirm: "Are you sure you want to cancel your premium membership and miss out on private wikis?" } %></p>
+  	<% end %>
 	<% end %>
-	<% if current_user.premium? %>
-		<p class="text-center"><%= link_to "Cancel my Premium Membership", charge_path(current_user), method: :delete, class: 'btn btn-default', data: { confirm: "Are you sure you want to cancel your premium membership and miss out on private wikis?" } %></p>
-  <% end %>
+
 </div>
 <!-- <div class="row">
 	<div class="col-md-6">
