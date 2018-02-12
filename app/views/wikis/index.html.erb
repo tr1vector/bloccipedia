@@ -1,22 +1,6 @@
 <h1 class="text-center">All Wikis</h1>
 <hr>
 <div class="row">
-	<% if current_user.member? %>
-		<div class="col-md-6">
-			<% @wikis.each do |wiki| %>
-				<% unless wiki.private == true %>
-					<div class="media">
-						<div class="media-body">
-							<h4 class="media-heading">
-								<p><%= link_to wiki.title, wiki %></p>
-								<p>Created By: <%= wiki.user.email %></p>
-							</h4>
-						</div>
-					</div>
-				<% end %>
-			<% end %>
-		</div>
-	<% else %>
 		<div class="col-md-6">
 			<% @wikis.each do |wiki| %>
 				<div class="media">
@@ -32,7 +16,6 @@
 				</div>
 			<% end %>
 		</div>
-	<% end %>
 	<div class="col-md-6 text-center">
 		<%= link_to "New Wiki", new_wiki_path(@wiki), class: 'btn btn-success' %>
 	</div>

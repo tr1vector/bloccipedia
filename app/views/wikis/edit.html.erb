@@ -6,9 +6,6 @@
 		<hr>
 		<h4>Guide:</h4>
 		<small>
-<!-- 			<h1># Large Header</h1>
-			<h2>## Medium Header</h2>
-			<h3>### Small Header</h3> -->
 			<p><strong>**bold**</strong></p>
 			<p>_underline_</p>
 			<p><i>*italic*</i></p>
@@ -28,7 +25,7 @@
 				<%= f.label :body %>
 				<%= f.text_field :body, rows: 8, class: 'form-control', placeholder: "Enter wiki body" %>
 			</div>
-			<% if current_user.admin? || current_user.premium? %>
+			<% if current_user.admin? || (current_user.premium? && current_user == @wiki.user) %>
 				<div class="form_group">
 					<%= f.label :private, class: 'checkbox' do %>
 						<%= f.check_box :private, class: 'checkbox inline' %> Private Wiki
