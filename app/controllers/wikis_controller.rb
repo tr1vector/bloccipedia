@@ -7,7 +7,11 @@ class WikisController < ApplicationController
 
   def show
   	@wiki = Wiki.find(params[:id])
-    unless (@wiki.private == false || @wiki.private == nil) || current_user.premium? || current_user.admin?
+    collaborators = []
+    @wiki.collaborators.each do |collaborator|
+      collaborators << collaborator.user.email
+    end  
+    unless (@wiki.private == false || @wiki.private == nil) || current_user.premium? || current_user.admin? || collaborators.include?(current_user.email)
       flash[:alert] = "You must be a premium user to view private topics."
       if current_user
         redirect_to new_charge_path
@@ -39,6 +43,7 @@ class WikisController < ApplicationController
 
   def edit
     @wiki = Wiki.find(params[:id])
+    @users = User.all
   end
 
   def update
@@ -48,7 +53,7 @@ class WikisController < ApplicationController
     @wiki.private = params[:wiki][:private]
 
     if @wiki.save
-      flash[:notice] = "Wiki was updated"
+      flash[:notice] = "Wiki was updated."
       redirect_to @wiki
     else
       flash.now[:alert] = "There was an error saving the wiki.  Please try again."
@@ -79,13 +84,4 @@ class WikisController < ApplicationController
       end
     end
   end
-
-  # def authorize_user
-  #   @wiki = Wiki.find(params[:id])
-
-  #   unless current_user == wiki.user || current_user.admin?
-  #     flash[:alert] = "You must be an admin to do that."
-  #     redirect_to wikis_path
-  #   end
-  # end
 end

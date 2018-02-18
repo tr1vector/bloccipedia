@@ -12,4 +12,8 @@ module WikisHelper
 		tables: true })
 		@markdown.render(text).html_safe
 	end
+
+	def wiki_has_collaborators?
+		@wiki.collaborators.any?
+	end
 end

@@ -1,50 +1,20 @@
 class WikiPolicy < ApplicationPolicy
-	class Scope
-		attr_reader :user, :scope
+  class Scope
+    attr_reader :user, :scope
 
-		def initialize(user, scope)
-			@user = user
-			@scope = scope
-		end
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
 
-		def resolve
-			wikis = []
-			if user.nil?
-				all_wikis = scope.all 
-				wikis = []
-				all_wikis.each do |wiki|
-					if wiki.private == false
-						wikis << wiki
-					end
-				end
-			elsif user.admin?
-				wikis = scope.all
-			elsif user.premium?
-				all_wikis = scope.all
-				wikis = []
-				# collaborators = []
-				all_wikis.each do |wiki|
-				# 	wiki.collaborators.each do |collaborator|
-				# 		collaborators << collaborator.email
-				# 	end
-					if wiki.private == false || wiki.user == user #|| collaborators.include?(user.email)
-						wikis << wiki
-					end
-				end
-			else
-				all_wikis = scope.all
-				wikis = []
-				collaborators = []
-				all_wikis.each do |wiki|
-				# 	wiki.collaborators.each do |collaborator|
-				# 		collaborators << collaborator.email
-				# 	end
-					if wiki.private == false #|| collaborators.include?(user.email)
-						wikis << wiki
-					end
-				end
-			end
-			wikis
-		end
-	end
+    def resolve
+      if @user.admin? || @user.premium?
+        return @scope.all
+      elsif @user.member?
+        return @scope.joins(:collaborators).where(collaborators: {user_id: @user.id}) + @scope.where(private: false)
+      else
+        return @scope.none
+      end
+   end
+ end
 end

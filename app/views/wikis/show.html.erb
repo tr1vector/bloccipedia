@@ -3,6 +3,14 @@
 <div class="row">
 	<div class="col-md-8">
 		<p><%= markdown(@wiki.body) %></p>
+		<p><strong>Created by:</strong> <%= @wiki.user.email %></p>
+		<% if @wiki.private? %>
+			<p><strong>Collaborators:</strong></p>
+			<% @wiki.collaborators.each do |collaborator| %>
+    		<%= collaborator.user.email %>
+    		<br>
+    	<% end %>
+		<% end %>
 	</div>
 	<div class="col-md-4">
 		<%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>

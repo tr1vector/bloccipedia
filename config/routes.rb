@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :charges, only: [:new, :create, :destroy]
 
+  resources :collaborators, only: [:new, :create, :update, :destroy]
+
   devise_for :users
   # get 'welcome/index'
 
