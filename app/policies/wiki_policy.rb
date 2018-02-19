@@ -8,13 +8,15 @@ class WikiPolicy < ApplicationPolicy
     end
 
     def resolve
-      if @user.admin? || @user.premium?
+      if @user.nil?
+        return @scope.where(private: false)
+      elsif @user.admin? #|| @user.premium?
         return @scope.all
-      elsif @user.member?
+      elsif @user.premium?
+        return @scope.joins(:collaborators).where(collaborators: {user_id: @user.id}) + @scope.where(user_id: @user.id, private: true) + @scope.where(private: false)
+      else @user.member?
         return @scope.joins(:collaborators).where(collaborators: {user_id: @user.id}) + @scope.where(private: false)
-      else
-        return @scope.none
       end
-   end
- end
+    end
+  end
 end
