@@ -16,8 +16,9 @@
 		</div>
 	</div>
 	<div class="col-md-6">
+		<% if @wiki.user == current_user && @wiki.private == true %>
 		<h3>Pick a Collaborator</h3>
-		<% if @wiki.user %>
+		
 		  <% @users.each do |user| %>
 		    <% unless user == @wiki.user || @wiki.users.include?(user) %>
 		      <%= form_tag collaborators_path, class: "collaborator", method: :post do  %>
@@ -30,6 +31,7 @@
 		      <% end %>
 		    <% end %>
 		  <% end %>
+	  
 	  <% end %>
 	</div>
 </div>
